@@ -1,0 +1,269 @@
+@font-face {
+  font-family: Mdi;
+  src: url('../font/materialdesignicons-webfont.ttf');
+}
+
+* {
+  margin: 0;
+   padding: 0
+}
+
+#heading {
+  text-transform: uppercase;
+  color: #fd0003;
+  font-weight: normal
+}
+
+#progressbar {
+  margin-bottom: 30px;
+  overflow: hidden;
+  color: lightgrey
+}
+
+#progressbar .active {
+  color: #fd0003
+}
+
+#progressbar li {
+  list-style-type: none;
+  font-size: 15px;
+  width: 20%;
+  float: left;
+  position: relative;
+  font-weight: 400
+}
+
+#progressbar #pilotos:before {
+  font-family: Mdi;
+  content: "\F0D93"
+}
+
+#progressbar #fecha:before {
+  font-family: Mdi;
+  content: "\F16E1"
+}
+
+#progressbar #registro:before {
+  font-family: Mdi;
+  content: "\F0800"
+}
+
+#progressbar #resumen:before {
+  font-family: Mdi;
+  content: "\F10D5"
+}
+
+#progressbar #confirmar:before {
+  font-family: Mdi;
+  content: "\F0D64"
+}
+
+#progressbar li:before {
+  width: 50px;
+  height: 50px;
+  line-height: 45px;
+  display: block;
+  font-size: 30px;
+  color: #ffffff;
+  background: lightgray;
+  border-radius: 50%;
+  margin: 0 auto 10px auto;
+  padding: 2px
+}
+
+#progressbar li:after {
+  content: '';
+  width: 100%;
+  height: 2px;
+  background: lightgray;
+  position: absolute;
+  left: 0;
+  top: 25px;
+  z-index: -1
+}
+
+#progressbar li.active:before,
+#progressbar li.active:after {
+  background: #fd0003
+}
+
+.progress {
+  height: 20px
+}
+
+.progress-bar {
+  background-color: #d66263
+}
+
+#minus_span:before {
+  font-family: Mdi;
+  content: "\F0BE5"
+}
+
+#plus_span:before {
+  font-family: Mdi;
+  content: "\F0800"
+}
+
+.btn-number{
+  border-radius: 50%!important;
+  background-color: #fd0003!important;
+  color: #fff!important;
+  outline: none!important;
+  font-size: 35px!important;
+  padding: 3px!important;
+  width: 70px;
+  height: 70px;
+  margin-top: 35px;
+}
+
+.input-number{
+  text-align: center!important;
+  font-weight: bold!important;
+  font-size: 130px!important;
+  height: 130px!important;
+  border:none!important;
+  box-shadow: none!important;
+  padding: 0!important;
+  position:relative;
+}
+
+.input-container{
+    position: relative;
+    height: 40px;
+    display: block; 
+    margin: 0 15px;
+}
+.input-container:before{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 2px;
+    height: 10px;
+    z-index:10;
+}
+.input-container:after{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 2px;
+    height: 10px;
+    z-index:10;
+}
+
+.img-kartings {
+  max-width: 80px; 
+  object-fit: contain;
+  border-radius: 5px 0 0 5px;
+}
+
+.hora-sesion-icon:before {
+  font-family: Mdi;
+  content: "\F144E";
+  margin-right: 2px;
+}
+
+.cantidad-sesion-icon:before {
+  font-family: Mdi;
+  content: "\F0D93";
+  margin-right: 6px;
+}
+.hora-sesion-habilitado {
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  height: 40px; 
+  background-color: #f7f0f0; 
+  color: #28a745;
+}
+.hora-sesion-habilitado.active {
+  background-color: #1e7e34; 
+  color: #fff;
+}
+.lugares-sesion-habilitado {
+  width: 100%; 
+  background-color: #4caf50; 
+  border-radius: 0 0 3px 3px; 
+  display: flex; flex: 1 1; 
+  justify-content: center; 
+  align-items: center; 
+  grid-row: 2; 
+  color: #fff;
+}
+.lugares-sesion-habilitado.active {
+  background-color: #5ace5e;
+}
+.hora-sesion-inhabilitado {
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  height: 40px; 
+  background-color: #f7f0f0; 
+  color: #dc3545;
+}
+.lugares-sesion-inhabilitado {
+  width: 100%; 
+  background-color: #dc3545; 
+  border-radius: 0 0 3px 3px; 
+  display: flex; flex: 1 1; 
+  justify-content: center; 
+  align-items: center; 
+  grid-row: 2; 
+  color: #fff;
+}
+.resumen-texto {
+  font-size: 13px;
+}
+#formReserva {
+  text-align: center;
+  position: relative;
+  margin-top: 20px
+}
+#formReserva fieldset {
+  background: white;
+  border: 0 none;
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  padding-bottom: 20px;
+  position: relative
+}
+.form-card {
+  text-align: left
+}
+#formReserva fieldset:not(:first-of-type) {
+  display: none
+}
+#formReserva input:focus,
+#formReserva textarea:focus {
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  border: 1px solid #fd0003;
+  outline-width: 0
+}
+.card {
+  z-index: 0;
+  border: none;
+  position: relative
+}
+.fs-title {
+  font-size: 25px;
+  color: #fd0003;
+  margin-bottom: 15px;
+  font-weight: normal;
+  text-align: left
+}
+.steps {
+  font-size: 25px;
+  color: gray;
+  margin-bottom: 10px;
+  font-weight: normal;
+  text-align: right
+}
+.loading {
+  background: url('../img/ajax-loading.gif') no-repeat right center;
+}
