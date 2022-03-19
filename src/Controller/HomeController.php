@@ -33,14 +33,13 @@ class HomeController extends AppController {
     $this->viewBuilder()->setClassName('Json');
     $this->loadModel('Horarios');
     $this->loadModel('Reservas');
-    $this->loadModel('CedulaPilotoReserva');
         
     $reservas = $this->Reservas->find()
     ->select([
       'id_horario',
-      'cantidad_reservas' => 'count(Reservas.id_horario)',
+      'cantidad_reservas' => 'sum(Reservas.cantidad)',
       'cantidad_total' => 'hr.cantidad',
-      'cantidad_restante' => 'hr.cantidad - count(Reservas.id_horario)',
+      'cantidad_restante' => 'hr.cantidad - sum(Reservas.cantidad)',
       'horario' => 'hr.inicio',
     ])
     ->join([
@@ -48,11 +47,6 @@ class HomeController extends AppController {
       'alias' => 'hr',
       'type' => 'LEFT',
       'conditions' => 'hr.id_horario = Reservas.id_horario'])
-    ->join([
-      'table' => 'cedula_piloto_reserva',
-      'alias' => 'cpr',
-      'type' => 'LEFT',
-      'conditions' => 'cpr.id_reserva = Reservas.id_reserva'])
     ->where(['Reservas.dia' => $fecha,'Reservas.id_estado IN' => ['1','2']])
     ->group(['Reservas.id_horario']);
 
@@ -61,7 +55,7 @@ class HomeController extends AppController {
       'id_horario'
     ])
     ->where(['dia' => $fecha]);
-
+    
     $horarios = $this->Horarios->find()
     ->select([
       'id_horario',
@@ -73,7 +67,7 @@ class HomeController extends AppController {
     ->where(['id_horario NOT IN' => $id_horarios, 'id_estado' => '5']);
 
     $horarios->unionAll($reservas);
-      
+
     $reservas_diarias = [];
     foreach ($horarios as $key => $value) {
       $reservas_diarias[$value['id_horario']] = $value;
@@ -95,14 +89,13 @@ class HomeController extends AppController {
     $this->viewBuilder()->setClassName('Json');
     $this->loadModel('Horarios');
     $this->loadModel('Reservas');
-    $this->loadModel('CedulaPilotoReserva');
-
+    
     $reservas = $this->Reservas->find()
     ->select([
       'id_horario',
-      'cantidad_reservas' => 'count(Reservas.id_horario)',
+      'cantidad_reservas' => 'sum(Reservas.cantidad)',
       'cantidad_total' => 'hr.cantidad',
-      'cantidad_restante' => 'hr.cantidad - count(Reservas.id_horario)',
+      'cantidad_restante' => 'hr.cantidad - sum(Reservas.cantidad)',
       'horario' => 'hr.inicio',
     ])
     ->join([
@@ -110,11 +103,6 @@ class HomeController extends AppController {
       'alias' => 'hr',
       'type' => 'LEFT',
       'conditions' => 'hr.id_horario = Reservas.id_horario'])
-    ->join([
-      'table' => 'cedula_piloto_reserva',
-      'alias' => 'cpr',
-      'type' => 'LEFT',
-      'conditions' => 'cpr.id_reserva = Reservas.id_reserva'])
     ->where(['Reservas.dia' => $fecha,'Reservas.id_estado IN' => ['1','2']])
     ->group(['Reservas.id_horario']);
 
@@ -221,7 +209,7 @@ class HomeController extends AppController {
     $reserva->id_piloto = $_POST['id-piloto'];
     $reserva->id_horario = $_POST['id-horario'];
     $reserva->id_estado = 1;
-    $reserva->id_kart = $_POST['id_kart'];
+    $reserva->id_kart = $_POST['id-kart'];
     $reserva->dia = $_POST['fecha-reserva'];
     $reserva->cantidad = $_POST['cantidad-pilotos'];
     
