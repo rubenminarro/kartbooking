@@ -83,7 +83,7 @@
   <div class="table-responsive mb-4">
     <?php
       
-      echo $this->Form->create([],['url' => ['action' => 'borrarReservaPiloto']]);
+      echo $this->Form->create();
       echo $this->Form->end();
       
       echo '<table id="table-reservas" class="table table-hover">';
@@ -91,9 +91,9 @@
           echo '<tr>';
             echo '<th>Día</th>';
             echo '<th>Horario</th>';
-            echo '<th>Piloto Responsable</th>';
+            echo '<th>Piloto</th>';
             echo '<th>Teléfono</th>';
-            echo '<th class="text-center">Pilotos</th>';
+            
             echo '<th class="text-center">Estado</th>';
             echo '<th>Tipo Kart</th>';
             echo '<th class="text-center">Total</th>';
@@ -105,95 +105,33 @@
           foreach ($dia_reserva as $key => $horario_reserva) {
             foreach ($horario_reserva as $key => $reposonble_reserva) {
               foreach ($reposonble_reserva as $key => $reserva) {
-                if ($reserva['id_piloto'] == $reserva['id_piloto_responsable']) {
-                  $idReserva = $reserva['id_reserva'];
-                  echo '<tr class="cabecera" id="cabecera-'.$reserva['id_reserva'].'">';
-                    echo '<td>'.$reposonble_reserva[0]['dia'].'</td>';
-                    echo '<td>'.$reposonble_reserva[0]['horario'].'</td>';
-                    echo '<td>'.$reserva['piloto_nombre'].' '.$reserva['piloto_apellido'].'</td>';
-                    echo '<td>'.$reserva['telefono'].'</td>';
-                    echo '<td class="text-center"><button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" title="Mostrar pilotos" data-target="#detalle-'.$reserva['id_reserva'].'"><i class="fa" aria-hidden="true"></i></button></td>';
-                    echo '<td class="text-center">';
-                      echo $this->Form->select(
-                        'estado',
-                        $estados,
-                        ['id'=>$idReserva,'class'=>'custom-select cambiar-estado','value'=>$reserva['id_estado']]
-                      );
-                    echo '</td>';
-                    echo '<td>'.$reserva['tipo_karitng'].'</td>';
-                    $dia = "'".$reposonble_reserva[0]['dia']."'";
-                    echo '<td id="total-reserva-'.$reserva['id_reserva'].'" class="text-center">'.count($reposonble_reserva).'</td>';
-                    echo '<td class="text-center"><button type="button" onclick="borrarReserva('.$reserva['id_piloto'].','.$reserva['id_horario'].','.$dia.');" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Borrar reserva"><i class="fas fa-trash-alt"></i></button></td>';
-                  echo '</tr>';
-                }
+                $idReserva = $reserva['id_reserva'];
+                echo '<tr class="cabecera" id="cabecera-'.$reserva['id_reserva'].'">';
+                  echo '<td>'.$reposonble_reserva[0]['dia'].'</td>';
+                  echo '<td>'.$reposonble_reserva[0]['horario'].'</td>';
+                  echo '<td>'.$reserva['piloto_nombre'].' '.$reserva['piloto_apellido'].'</td>';
+                  echo '<td>'.$reserva['telefono'].'</td>';
+                  echo '<td class="text-center">';
+                    echo $this->Form->select(
+                      'estado',
+                      $estados,
+                      ['id'=>$idReserva,'class'=>'custom-select cambiar-estado','value'=>$reserva['id_estado']]
+                    );
+                  echo '</td>';
+                  echo '<td>'.$reserva['tipo_karitng'].'</td>';
+                  $dia = "'".$reposonble_reserva[0]['dia']."'";
+                  echo '<td id="total-reserva-'.$reserva['id_reserva'].'" class="text-center">'.count($reposonble_reserva).'</td>';
+                  echo '<td class="text-center"><button type="button" onclick="borrarReserva('.$reserva['id_reserva'].');" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Borrar reserva"><i class="fas fa-trash-alt"></i></button></td>';
+                echo '</tr>';
               }
             }
           }
         }
         echo '</tbody>';
       echo '</table>';
-      
-      foreach ($dia_reservas as $dia_reserva) {
-        foreach ($dia_reserva as $key => $horario_reserva) {
-          foreach ($horario_reserva as $key => $reposonble_reserva) {
-            foreach ($reposonble_reserva as $key => $reserva) {
-              if ($reserva['id_piloto'] == $reserva['id_piloto_responsable']) {
-                $idReserva = $reserva['id_reserva'];
-              }
-            }
-            if(count($reposonble_reserva)>1){
-              echo '<div id="detalle-'.$idReserva.'" class="modal fade">';
-                echo '<div class="modal-dialog modal-lg" role="document">';
-                  echo '<div class="modal-content">';
-                    echo '<div class="modal-header">';
-                      echo '<h5 class="modal-title">Pilotos</h5>';
-                      echo '<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>';
-                    echo '</div>';
-                    echo '<div class="modal-body">';
-                      echo '<div class="table-responsive mb-4">';
-                        echo '<table id="table-detalles" class="table table-hover table-sm">';
-                          echo '<thead>';
-                            echo '<tr id="cabecera-otro-piloto-'.$reserva['id_piloto'].'">';
-                              echo '<th>Piloto</th>';
-                              echo '<th>Teléfono</th>';
-                              echo '<th>Correo</th>';
-                              echo '<th></th>';
-                            echo '</tr>';
-                          echo '</thead>';
-                          echo '<tbody>';
-                            foreach ($reposonble_reserva as $key => $piloto) {
-                              if ($piloto['id_piloto'] != $piloto['id_piloto_responsable']) {
-                                echo '<tr id="detalle-reserva-'.$idReserva.'-'.$piloto['id_piloto'].'">';
-                                  echo '<td>'.$piloto['piloto_nombre'].' '.$piloto['piloto_apellido'].'</td>';
-                                  echo '<td>'.$piloto['telefono'].'</td>';
-                                  echo '<td>'.$piloto['correo'].'</td>';
-                                  echo '<td><button type="button" onclick="borrarReservaPiloto('.$piloto['id_reserva'].','.$idReserva.');" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Borrar piloto"><i class="fas fa-trash-alt"></i></button></td>';
-                                echo '</tr>';
-                              }
-                            }
-                          echo '</tbody>';
-                        echo '</table>';
-                      echo '</div>';
-                    echo '</div>';  
-                  echo '</div>';
-                echo '</div>';
-              echo '</div>';
-            }
-          }
-        }
-      }
-      
     ?>
   </div>
 </main>
-<style type="text/css">
-  [data-toggle="modal"] .fa:before {  
-    font-family: Mdi;
-    content: "\F1372";
-  }
-</style>
 
 <script type="text/javascript">
 
@@ -270,12 +208,12 @@
   });
   
   /* Borrar reserva */ 
-  function borrarReserva(idReservaResponsalbe,idHorario,dia){
+  function borrarReserva(idReserva){
 
     $.ajax({
       url: '<?= $this->Url->build(['controller'=>'Reservas','action'=>'borrarReserva']) ?>',
       dataType: 'Json',
-      data : {idReservaResponsalbe:idReservaResponsalbe,idHorario:idHorario,dia:dia},
+      data : {idReserva:idReserva},
       type: 'POST',
       headers: {
         'X-CSRF-Token': $('[name="_csrfToken"]').val()
@@ -286,38 +224,6 @@
           var url = window.location.href;  
           url = url.split('?')[0];
           window.location.href = url+'?msn=4';
-        }else{
-          var url = window.location.href;  
-          url = url.split('?')[0];
-          window.location.href = url+'?msn=2';
-        }
-      },
-      error: function(data){
-        var url = window.location.href;  
-        url = url.split('?')[0];
-        window.location.href = url+'?msn=3';
-      }
-    });
-  }
-
-  /* Borrar piloto */ 
-  function borrarReservaPiloto(idReservaPiloto,idReservaResponsalbe){
-
-    $.ajax({
-      url: '<?= $this->Url->build(['controller'=>'Reservas','action'=>'borrarReservaPiloto']) ?>',
-      dataType: 'Json',
-      data : {idReserva:idReservaPiloto},
-      type: 'POST',
-      headers: {
-        'X-CSRF-Token': $('[name="_csrfToken"]').val()
-      },
-      cache:false,
-      success: function(data){
-        $('#detalle-'+idReservaResponsalbe).modal('hide');
-        if (data == 1) {
-          var url = window.location.href;  
-          url = url.split('?')[0];
-          window.location.href = url+'?msn=1';
         }else{
           var url = window.location.href;  
           url = url.split('?')[0];

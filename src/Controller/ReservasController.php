@@ -33,7 +33,7 @@ class ReservasController extends AppController {
       ->select([
         'id_reserva',
         'id_piloto' => 'pi.id_piloto',
-        'id_piloto_responsable' => 'Reservas.id_piloto_responsable',
+        'cantidad' => 'Reservas.cantidad',
         'piloto_nombre' => 'pi.nombre',
         'piloto_apellido' => 'pi.apellido',
         'correo' => 'pi.correo',
@@ -72,12 +72,12 @@ class ReservasController extends AppController {
       
     foreach ($datos as $dato) {
       if ($dato) {
-        $dia_reservas[$dato['dia']][$dato['id_horario']][$dato['id_piloto_responsable']][] = [
+        $dia_reservas[$dato['dia']][$dato['id_horario']][$dato['id_piloto']][] = [
           'id_reserva' => $dato['id_reserva'],
           'id_piloto' => $dato['id_piloto'],
-          'id_piloto_responsable' => $dato['id_piloto_responsable'],
           'piloto_nombre' => $dato['piloto_nombre'],
           'piloto_apellido' => $dato['piloto_apellido'],
+          'cantidad' => $dato['cantidad'],
           'telefono' => $dato['telefono'],
           'correo' => $dato['correo'],
           'id_horario' => $dato['id_horario'],
@@ -90,6 +90,7 @@ class ReservasController extends AppController {
         ];
       }
     }
+
     $this->set(compact(['dia_reservas','estados']));
   }
 
@@ -129,7 +130,7 @@ class ReservasController extends AppController {
       ->select([
         'id_reserva',
         'id_piloto' => 'pi.id_piloto',
-        'id_piloto_responsable' => 'Reservas.id_piloto_responsable',
+        'cantidad' => 'Reservas.cantidad',
         'piloto_nombre' => 'pi.nombre',
         'piloto_apellido' => 'pi.apellido',
         'correo' => 'pi.correo',
@@ -167,10 +168,10 @@ class ReservasController extends AppController {
 
     foreach ($datos as $dato) {
       if ($dato) {
-        $datos_reservas[$dato['id_horario']][$dato['id_piloto_responsable']][] = [
+        $datos_reservas[$dato['id_horario']][$dato['id_piloto']][] = [
           'id_reserva' => $dato['id_reserva'],
           'id_piloto' => $dato['id_piloto'],
-          'id_piloto_responsable' => $dato['id_piloto_responsable'],
+          'cantidad' => $dato['cantidad'],
           'piloto_nombre' => $dato['piloto_nombre'],
           'piloto_apellido' => $dato['piloto_apellido'],
           'telefono' => $dato['telefono'],
@@ -191,17 +192,17 @@ class ReservasController extends AppController {
     foreach ($datos_reservas as $key => $horario_reserva) {
       foreach ($horario_reserva as $key => $reposonble_reserva) {
         foreach ($reposonble_reserva as $key => $reserva) {
-          if ($reserva['id_piloto'] == $reserva['id_piloto_responsable']) {
-            $resultado[] = [
-              'horario' => $reposonble_reserva[0]['horario'],
-              'piloto' => $reserva['piloto_nombre'].' '.$reserva['piloto_apellido'],
-              'telefono' => $reserva['telefono'],
-              'correo' => $reserva['correo'],
-              'estado' => $reserva['estado'],
-              'tipo_karitng' => $reserva['tipo_karitng'],
-              'total' => count($reposonble_reserva)
-            ];
-          }
+          
+          $resultado[] = [
+            'horario' => $reposonble_reserva[0]['horario'],
+            'piloto' => $reserva['piloto_nombre'].' '.$reserva['piloto_apellido'],
+            'telefono' => $reserva['telefono'],
+            'correo' => $reserva['correo'],
+            'estado' => $reserva['estado'],
+            'tipo_karitng' => $reserva['tipo_karitng'],
+            'total' => $reserva['cantidad']
+          ];
+          
         }
 
       }
@@ -215,39 +216,12 @@ class ReservasController extends AppController {
     $this->viewBuilder()->setClassName('Json');
     $this->loadModel('Reservas');
 
-    $idReservaResponsalbe = $_POST['idReservaResponsalbe'];
-    $idHorario = $_POST['idHorario'];
-
-    $fechaActual = explode("/",$_POST['dia']);
-    $dia = $fechaActual[2]."-".$fechaActual[1]."-".$fechaActual[0];
-    
-    $datos = $this->Reservas->find()
-      ->select([
-        'id_reserva'
-      ])
-      ->where(['id_piloto_responsable'=> $idReservaResponsalbe,'id_horario'=> $idHorario,'dia'=> $dia]);
-
-    $idReservas = [];
-    foreach ($datos as $key => $idReserva) {
-      $idReservas[] = $idReserva['id_reserva'];
-    }
-    
-    $result = ($this->Reservas->deleteAll(['id_reserva IN' => $idReservas])) ? 1 : 0;
-    
-    $this->set(compact('result'));
-    $this->viewBuilder()->setOption('serialize', 'result');
-    
-  }
-
-  public function borrarReservaPiloto(){
-    
-    $this->viewBuilder()->setClassName('Json');
-    $this->loadModel('Reservas');
-
     $idReserva = $_POST['idReserva'];
+
+    $reservasTable = $this->getTableLocator()->get('Reservas');
+    $reserva = $reservasTable->get($idReserva);
     
-    $entity = $this->Reservas->get($idReserva);
-    $result = ($this->Reservas->delete($entity)) ? 1 : 0;
+    $result = ($this->Reservas->delete($reserva)) ? 1 : 0;
     
     $this->set(compact('result'));
     $this->viewBuilder()->setOption('serialize', 'result');
@@ -262,45 +236,16 @@ class ReservasController extends AppController {
     $idReserva = $_POST['idReserva'];
     $idEstado = $_POST['idEstado'];
 
-    $datosResponsable = $this->Reservas->find()
-      ->select([
-        'id_piloto_responsable',
-        'id_horario',
-        'dia'
-      ])
-      ->where(['id_reserva'=> $idReserva]);
-    $responsable = [];  
-    foreach ($datosResponsable as $key => $value) {
-      $responsable['id_piloto_responsable'] = $value['id_piloto_responsable'];
-      $responsable['id_horario'] = $value['id_horario'];
-      $responsable['dia'] = $value['dia'];
-    }
-
-    $idReservaDatos = $this->Reservas->find()
-      ->select([
-        'id_reserva'
-      ])
-      ->where([
-        'id_piloto_responsable'=>$responsable['id_piloto_responsable'],
-        'id_horario'=>$responsable['id_horario'],
-        'dia'=> $responsable['dia']
-      ]);
-
-    $idReservas = [];
-    foreach ($idReservaDatos as $key => $idReserva) {
-      $idReservas[$key]['id_reserva'] = $idReserva['id_reserva'];
-      $idReservas[$key]['id_estado'] = $idEstado;
-    }
-
     $reservasTable = $this->getTableLocator()->get('Reservas');
-    foreach ($idReservas as $key => $reserva) {
-      $reserva = $reservasTable->get($reserva['id_reserva']);
-      $reserva->id_estado = $idEstado;
-      $reservasTable->save($reserva);
+    $reserva = $reservasTable->get($idReserva);
+    $reserva->id_estado = $idEstado;
+
+    try {
+      $result = ($reservasTable->save($reserva)) ? 1 : 0;
+    } catch(\Exception $e) {
+      $result = 2;
     }
 
-    $result = 1;
-    
     $this->set(compact('result'));
     $this->viewBuilder()->setOption('serialize', 'result');
     
