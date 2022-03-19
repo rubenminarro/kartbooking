@@ -60,11 +60,6 @@ class ReservasTable extends Table
             ->notEmptyString('id_piloto');
 
         $validator
-            ->integer('id_piloto_responsable')
-            ->requirePresence('id_piloto_responsable', 'create')
-            ->notEmptyString('id_piloto_responsable');
-
-        $validator
             ->integer('id_horario')
             ->requirePresence('id_horario', 'create')
             ->notEmptyString('id_horario');
@@ -84,6 +79,11 @@ class ReservasTable extends Table
             ->maxLength('dia', 10)
             ->requirePresence('dia', 'create')
             ->notEmptyString('dia');
+
+        $validator
+            ->integer('cantidad')
+            ->requirePresence('cantidad', 'create')
+            ->notEmptyString('cantidad');
 
         return $validator;
     }

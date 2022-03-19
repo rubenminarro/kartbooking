@@ -214,30 +214,19 @@ class HomeController extends AppController {
     $this->viewBuilder()->setClassName('Json');
     $this->loadModel('Reservas');
     $result = 0;
-      
-    $cantidad_pilotos = $_POST['id-cantidad']+1;
-    $id_piloto_responsable = $_POST['id-piloto-1'];
-    $id_horario = $_POST['id-horario'];
-    $id_estado = '1';
-    $id_kart = $_POST['id-kart'];
-    $dia = $_POST['fecha-reserva'];
-
-    for ($i = 1; $i < $cantidad_pilotos; $i++) { 
-      $datos[$i] = [
-        'id_piloto'=>$_POST['id-piloto-'.$i],
-        'id_piloto_responsable'=>$id_piloto_responsable,
-        'id_horario'=>$id_horario,
-        'id_estado'=>$id_estado,
-        'id_kart'=>$id_kart,
-        'dia'=>$dia,
-      ];
-    }
 
     $reservasTable = $this->getTableLocator()->get('Reservas');
-    $reservas = $reservasTable->newEntities($datos);
-      
+    $reserva = $reservasTable->newEmptyEntity();
+    
+    $reserva->id_piloto = $_POST['id-piloto'];
+    $reserva->id_horario = $_POST['id-horario'];
+    $reserva->id_estado = 1;
+    $reserva->id_kart = $_POST['id_kart'];
+    $reserva->dia = $_POST['fecha-reserva'];
+    $reserva->cantidad = $_POST['cantidad-pilotos'];
+    
     try {
-      $result = ($reservasTable->saveMany($reservas)) ? 1 : 0;
+      $result = ($reservasTable->save($reserva)) ? 1 : 0;
     } catch(\Exception $e) {
       $result = 2;
     }

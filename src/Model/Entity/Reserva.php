@@ -10,11 +10,11 @@ use Cake\ORM\Entity;
  *
  * @property int $id_reserva
  * @property int $id_piloto
- * @property int $id_piloto_responsable
  * @property int $id_horario
  * @property int $id_estado
  * @property int $id_kart
  * @property string $dia
+ * @property int $cantidad
  */
 class Reserva extends Entity
 {
@@ -29,10 +29,10 @@ class Reserva extends Entity
      */
     protected $_accessible = [
         'id_piloto' => true,
-        'id_piloto_responsable' => true,
         'id_horario' => true,
         'id_estado' => true,
         'id_kart' => true,
         'dia' => true,
+        'cantidad' => true,
     ];
 }

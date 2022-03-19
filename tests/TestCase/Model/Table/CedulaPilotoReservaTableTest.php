@@ -16,7 +16,7 @@ class CedulaPilotoReservaTableTest extends TestCase
      *
      * @var \App\Model\Table\CedulaPilotoReservaTable
      */
-    protected $CedulaPilotoReserva;
+    protected $CedulaPilotoReservaTable;
 
     /**
      * Fixtures
@@ -36,7 +36,7 @@ class CedulaPilotoReservaTableTest extends TestCase
     {
         parent::setUp();
         $config = $this->getTableLocator()->exists('CedulaPilotoReserva') ? [] : ['className' => CedulaPilotoReservaTable::class];
-        $this->CedulaPilotoReserva = $this->getTableLocator()->get('CedulaPilotoReserva', $config);
+        $this->CedulaPilotoReservaTable = $this->getTableLocator()->get('CedulaPilotoReserva', $config);
     }
 
     /**
@@ -46,7 +46,7 @@ class CedulaPilotoReservaTableTest extends TestCase
      */
     public function tearDown(): void
     {
-        unset($this->CedulaPilotoReserva);
+        unset($this->CedulaPilotoReservaTable);
 
         parent::tearDown();
     }
