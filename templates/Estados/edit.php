@@ -2,7 +2,7 @@
 	<div class="card text-white bg-secondary mb-2">
 		<div class="card-header">
 			<h4 class="float-left">Editar Estado</h4>
-			<?= $this->Html->link(__('<i class="fas fa-home"></i>'), ['action' => 'index'], ['class'=>'btn btn-outline-light float-right','type'=>'button','escape'=>false,'data-toggle'=>'tooltip','data-placement'=>'top','title'=>'Volver a pilotos']); ?>
+			<?= $this->Html->link(__('<i class="fas fa-home"></i>'), ['action' => 'index'], ['class'=>'btn btn-outline-light float-right','type'=>'button','escape'=>false,'data-toggle'=>'tooltip','data-placement'=>'top','title'=>'Volver a estados']); ?>
 		</div>
 	</div>
 	<div class="row">

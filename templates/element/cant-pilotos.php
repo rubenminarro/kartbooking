@@ -31,7 +31,7 @@
 
     <div class="row mt-5">
       <div class="col">
-        <button id="kart-adultos" type="button" value="1" class="tipo-kart btn btn-block btn-outline-danger text-left mb-2">
+        <button id="kart-adultos" type="button" value="1" class="tipo-kart btn btn-block btn-outline-secondary text-left mb-2">
           <?= $this->Html->image('kart_adultos.jpg', ['alt' => 'Super Karts', 'class'=>'img-fluid img-kartings']) ?>
           <b>Alquiler Standard Kart:</b>
           <hr style="margin-bottom: 5px;">
@@ -42,7 +42,7 @@
 
     <div class="row">
       <div class="col">
-        <button id="kart-ninos" type="button" value="2" class="tipo-kart btn btn-block btn-outline-danger text-left mb-2">
+        <button id="kart-ninos" type="button" value="2" class="tipo-kart btn btn-block btn-outline-secondary text-left mb-2">
           <?= $this->Html->image('kart_ninos.jpg', ['alt' => 'Super Karts', 'class'=>'img-fluid img-kartings']) ?>
           <b>Alquiler Infantil Kart:</b>
           <hr style="margin-bottom: 5px;">
@@ -52,5 +52,5 @@
     </div>
 
   </div>
-  <button id="pt1" type="button" name="next" class="next action-button text-right btn btn-danger" disabled/>Siguiente</button>
+  <button id="pt1" type="button" name="next" style="background-color:var(--orange);color:var(--white);" class="next action-button text-right btn" disabled/>Siguiente</button>
 </fieldset>

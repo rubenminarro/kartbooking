@@ -40,7 +40,7 @@
 <body>
 
 
-  <nav class="navbar navbar-expand-lg navbar-dark mb-4" style="background-color: #fd0003;">
+  <nav class="navbar navbar-expand-lg navbar-dark mb-4" style="background-color: #000;">
     
     <a class="navbar-brand" href="#" onclick="return false;">
       <?= $this->Html->image('logo_super_kart.png', ['alt' => 'Super Karts', 'class'=>'img-fluid']) ?>
@@ -80,7 +80,7 @@
 
   <?= $this->fetch('content') ?>
 
-  <footer class="footer" style="background-color: #fd0003;">
+  <footer class="footer" style="background-color: #000;">
     <div class="container text-center">
       <span class="text-muted" style="color: white !important;">Copyright &copy; <?= date("Y"); ?> <a href="http://seintos.com" style="color: white;">Seintos</a></span>
     </div>

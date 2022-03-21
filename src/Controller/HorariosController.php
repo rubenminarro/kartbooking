@@ -32,7 +32,7 @@ class HorariosController extends AppController {
 			'conditions' => 'es.id_estado = Horarios.id_estado'])
 		->order(['inicio'=>'asc']);
 				
-		$this->set('title','Superkarts - Administración');
+		$this->set('title','KCP - Karting Outdoor - Administración');
 		$this->set(compact(['horarios']));
 		$this->viewBuilder()->setLayout('admin');
   }
@@ -59,7 +59,7 @@ class HorariosController extends AppController {
       $this->Flash->error(__('El horario no se ha podido guardar. Por favor intente nuevamente.'));
     }
 		$this->set(compact(['horario','estados']));
-		$this->set('title','Superkarts - Administración');
+		$this->set('title','KCP - Karting Outdoor - Administración');
 		$this->viewBuilder()->setLayout('admin');
   }
 
@@ -89,7 +89,7 @@ class HorariosController extends AppController {
       $this->Flash->error(__('El horario no se ha podido guardar. Por favor intente nuevamente.'));
     }
     $this->set(compact(['horario','estados']));
-		$this->set('title','Superkarts - Administración');
+		$this->set('title','KCP - Karting Outdoor - Administración');
 		$this->viewBuilder()->setLayout('admin');
   }
 }

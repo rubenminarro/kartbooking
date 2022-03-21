@@ -19,7 +19,7 @@ class ReservasController extends AppController {
     */
   public function index() {
     
-		$this->set('title','Superkarts - Administración');
+		$this->set('title','KCP - Karting Outdoor - Administración');
     $this->viewBuilder()->setLayout('admin');
     $this->loadModel('Estados');
 

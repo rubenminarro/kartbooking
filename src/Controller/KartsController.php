@@ -18,7 +18,7 @@ class KartsController extends AppController {
   public function index() {
 		$karts = $this->Karts->find()
 		->order(['tipo'=>'asc']);
-		$this->set('title','Superkarts - Administración');
+		$this->set('title','KCP - Karting Outdoor - Administración');
 		$this->set(compact(['karts']));
 		$this->viewBuilder()->setLayout('admin');
   }
@@ -38,7 +38,7 @@ class KartsController extends AppController {
       }
       $this->Flash->error(__('El tipo de kart no se ha podido guardar. Por favor intente nuevamente.'));
     }
-    $this->set('title','Superkarts - Administración');
+    $this->set('title','KCP - Karting Outdoor - Administración');
 		$this->set(compact(['kart']));
 		$this->viewBuilder()->setLayout('admin');
   }
@@ -62,6 +62,8 @@ class KartsController extends AppController {
       }
       $this->Flash->error(__('El tipo de kart no se ha podido guardar. Por favor intente nuevamente.'));
     }
+    $this->set('title','KCP - Karting Outdoor - Administración');
     $this->set(compact('kart'));
+    $this->viewBuilder()->setLayout('admin');
   }
 }

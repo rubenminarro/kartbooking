@@ -58,5 +58,5 @@
 		</div>
 	</div>
 	<button type="button" name="previous" class="previous action-button-previous btn btn-secondary"/>Anterior</button>
-	<button id="pt4" type="button" name="next" class="next action-button btn btn-danger" disabled/>Reservar</button>
+	<button id="pt4" type="button" name="next" style="background-color:var(--orange);color:var(--white);" class="next action-button text-right btn" disabled/>Reservar</button>
 </fieldset>

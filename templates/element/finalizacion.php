@@ -20,5 +20,5 @@
 			</div>
 		</div>
 	</div>
-	<button onclick="location.reload();" class="btn btn-danger" role="button" aria-disabled="true">Finalizar</button>
+	<button onclick="location.reload();" class="text-right btn" role="button" aria-disabled="true" style="background-color:var(--orange);color:var(--white);">Finalizar</button>
 </fieldset>

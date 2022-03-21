@@ -26,7 +26,7 @@ class PilotosController extends AppController {
 			'telefono'
 		])
 		->order(['nombre'=>'asc','apellido'=>'asc']);
-		$this->set('title','Superkarts - Administración');
+		$this->set('title','KCP - Karting Outdoor - Administración');
 		$this->set(compact(['pilotos']));
 		$this->viewBuilder()->setLayout('admin');
    }
@@ -46,7 +46,7 @@ class PilotosController extends AppController {
       }
       $this->Flash->error(__('El piloto no se ha podido guardar. Por favor intente nuevamente.'));
     }
-    $this->set('title','Superkarts - Administración');
+    $this->set('title','KCP - Karting Outdoor - Administración');
 		$this->set(compact(['piloto']));
 		$this->viewBuilder()->setLayout('admin');
   }
@@ -70,7 +70,7 @@ class PilotosController extends AppController {
       }
       $this->Flash->error(__('El piloto no se ha podido guardar. Por favor intente nuevamente.'));
     }
-    $this->set('title','Superkarts - Administración');
+    $this->set('title','KCP - Karting Outdoor - Administración');
 		$this->set(compact(['piloto']));
 		$this->viewBuilder()->setLayout('admin');
   }

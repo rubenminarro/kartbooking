@@ -73,7 +73,7 @@
     html += '<h6 class="card-title resumen-texto">'+fecha_reserva.toLocaleDateString('es-ES',options)+'</h6>';
     html += '<h6 class="card-title resumen-texto">'+hora+'</h6>';
     html += '<h6 class="card-title resumen-texto">'+correo_piloto+'</h6>';
-    html += '<button type="button" class="btn btn-danger btn-sm" disabled>Cant. '+cantidad+'</button';
+    html += '<button type="button" class="btn btn-sm" style="background-color:var(--orange);color:var(--white);" disabled>Cant. '+cantidad+'</button';
 
     $('#resumen-datos').html(html);
     $('#pt4').prop('disabled',false);

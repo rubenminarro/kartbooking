@@ -10,7 +10,7 @@
 
 #heading {
   text-transform: uppercase;
-  color: #fd0003;
+  color: #fe6502;
   font-weight: normal
 }
 
@@ -21,7 +21,7 @@
 }
 
 #progressbar .active {
-  color: #fd0003
+  color: #fe6502
 }
 
 #progressbar li {
@@ -84,7 +84,7 @@
 
 #progressbar li.active:before,
 #progressbar li.active:after {
-  background: #fd0003
+  background: #fe6502
 }
 
 .progress {
@@ -92,7 +92,7 @@
 }
 
 .progress-bar {
-  background-color: #d66263
+  background-color: #ffad76
 }
 
 #minus_span:before {
@@ -107,7 +107,7 @@
 
 .btn-number{
   border-radius: 50%!important;
-  background-color: #fd0003!important;
+  background-color: #fe6502!important;
   color: #fff!important;
   outline: none!important;
   font-size: 35px!important;
@@ -242,7 +242,7 @@
   -moz-box-shadow: none !important;
   -webkit-box-shadow: none !important;
   box-shadow: none !important;
-  border: 1px solid #fd0003;
+  border: 1px solid #fe6502;
   outline-width: 0
 }
 .card {
@@ -252,7 +252,7 @@
 }
 .fs-title {
   font-size: 25px;
-  color: #fd0003;
+  color: #fe6502;
   margin-bottom: 15px;
   font-weight: normal;
   text-align: left

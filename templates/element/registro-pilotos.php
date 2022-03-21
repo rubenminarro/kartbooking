@@ -125,6 +125,6 @@
 		</div>
 	</div>
 	<button id="btn-atras-horarios" type="button" name="previous" class="previous action-button-previous btn btn-secondary"/>Anterior</button>
-	<button id="pt3" type="button" name="next" class="next action-button btn btn-danger" disabled/>Siguiente</button>
+	<button id="pt3" type="button" name="next" style="background-color:var(--orange);color:var(--white);" class="next action-button text-right btn" disabled/>Siguiente</button>
 	<button id="btn-registrar-piloto" onclick="registrarPiloto();" type="button" class="btn btn-info" style="display: none;"/>Registrar</button>
 </fieldset>

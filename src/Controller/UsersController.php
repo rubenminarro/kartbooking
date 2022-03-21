@@ -37,7 +37,7 @@ class UsersController extends AppController {
 			'conditions' => 'es.id_estado = Users.id_estado'])
 		->order(['username'=>'asc']);
 				
-		$this->set('title','Superkarts - Administración');
+		$this->set('title','KCP - Karting Outdoor - Administración');
 		$this->set(compact(['usuarios']));
 		$this->viewBuilder()->setLayout('admin');
   }
@@ -57,7 +57,7 @@ class UsersController extends AppController {
       }
       $this->Flash->error(__('El usuario no se ha podido guardar. Por favor intente nuevamente.'));
     }
-		$this->set('title','Superkarts - Administración');
+		$this->set('title','KCP - Karting Outdoor - Administración');
 		$this->set(compact(['user']));
 		$this->viewBuilder()->setLayout('admin');
   }
@@ -87,7 +87,7 @@ class UsersController extends AppController {
       }
       $this->Flash->error(__('El usuario no se ha podido guardar. Por favor intente nuevamente.'));
     }
-		$this->set('title','Superkarts - Administración');
+		$this->set('title','KCP - Karting Outdoor - Administración');
 		$this->set(compact(['user','estados']));
 		$this->viewBuilder()->setLayout('admin');
   }
@@ -106,7 +106,7 @@ class UsersController extends AppController {
       $this->Flash->error(__('Usuario o contraseña inválida'));
     }
 
-		$this->set('title','Superkarts - Administración');
+		$this->set('title','KCP - Karting Outdoor - Administración');
 		$this->viewBuilder()->setLayout('login');
   }
 

@@ -23,7 +23,7 @@
 		</div>
 	</div>
   
-	<button class="btn btn-lg btn-danger btn-block" type="submit">Ingresar</button>
+	<button class="btn btn-lg btn-block" style="background-color:var(--orange);color:var(--white);" type="submit">Ingresar</button>
   <p class="mt-5 mb-3 text-muted">&copy; <?= date("Y"); ?></p>
 <?= $this->Form->end() ?>
 

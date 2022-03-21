@@ -40,5 +40,5 @@
 		<div id="asientos-libres-contenedor"></div>
 	</div>
 	<button onclick="cargarAscientos($('#fecha-reserva').val());" type="button" name="previous" class="previous action-button-previous btn btn-secondary"/>Anterior</button>
-	<button id="pt2" type="button" name="next" class="next action-button btn btn-danger" disabled/>Siguiente</button>
+	<button id="pt2" type="button" name="next" style="background-color:var(--orange);color:var(--white);" class="next action-button text-right btn" disabled/>Siguiente</button>
 </fieldset>

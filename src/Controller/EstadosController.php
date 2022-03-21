@@ -18,7 +18,7 @@ class EstadosController extends AppController {
   public function index() {
     $estados = $this->Estados->find()
 		->order(['descripcion'=>'asc']);
-		$this->set('title','Superkarts - Administración');
+		$this->set('title','KCP - Karting Outdoor - Administración');
 		$this->set(compact(['estados']));
 		$this->viewBuilder()->setLayout('admin');
 	}
@@ -38,7 +38,7 @@ class EstadosController extends AppController {
       }
       $this->Flash->error(__('El estado no se ha podido guardar. Por favor intente nuevamente.'));
     }
-    $this->set('title','Superkarts - Administración');
+    $this->set('title','KCP - Karting Outdoor - Administración');
 		$this->set(compact(['estado']));
 		$this->viewBuilder()->setLayout('admin');
   }
@@ -62,7 +62,7 @@ class EstadosController extends AppController {
       }
       $this->Flash->error(__('El estado no se ha podido guardar. Por favor intente nuevamente.'));
     }
-    $this->set('title','Superkarts - Administración');
+    $this->set('title','KCP - Karting Outdoor - Administración');
 		$this->set(compact(['estado']));
 		$this->viewBuilder()->setLayout('admin');
   }

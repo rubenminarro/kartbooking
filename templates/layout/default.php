@@ -37,7 +37,7 @@
 </head>
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #fd0003;display: flex;
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #000;display: flex;
   justify-content: space-between;">
     
     <a class="navbar-brand" href="#" onclick="return false;">
@@ -52,7 +52,7 @@
 
   <?= $this->fetch('content') ?>
 
-  <footer class="footer" style="background-color: #fd0003;">
+  <footer class="footer" style="background-color: #000;">
     <div class="container text-center">
       <span class="text-muted" style="color: white !important;">Copyright &copy; <?php echo date("Y"); ?> <a href="http://seintos.com" style="color: white;">Seintos </a></span>
     </div>

@@ -23,7 +23,7 @@ class HomeController extends AppController {
   public function index(){
     $this->layout = 'default';
     $diasBloqueados = $this->diasBloqueados();
-    $this->set('title','Superkarts - Alquiler de Kartings');
+    $this->set('title','KCP - Karting Outdoor');
     $this->set(compact('diasBloqueados'));
   }
 
