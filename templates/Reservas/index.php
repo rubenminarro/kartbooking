@@ -93,7 +93,6 @@
             echo '<th>Horario</th>';
             echo '<th>Piloto</th>';
             echo '<th>Teléfono</th>';
-            
             echo '<th class="text-center">Estado</th>';
             echo '<th>Tipo Kart</th>';
             echo '<th class="text-center">Total</th>';
@@ -103,27 +102,24 @@
         echo '<tbody>';
         foreach ($dia_reservas as $dia_reserva) {
           foreach ($dia_reserva as $key => $horario_reserva) {
-            foreach ($horario_reserva as $key => $reposonble_reserva) {
-              foreach ($reposonble_reserva as $key => $reserva) {
-                $idReserva = $reserva['id_reserva'];
-                echo '<tr class="cabecera" id="cabecera-'.$reserva['id_reserva'].'">';
-                  echo '<td>'.$reposonble_reserva[0]['dia'].'</td>';
-                  echo '<td>'.$reposonble_reserva[0]['horario'].'</td>';
-                  echo '<td>'.$reserva['piloto_nombre'].' '.$reserva['piloto_apellido'].'</td>';
-                  echo '<td>'.$reserva['telefono'].'</td>';
-                  echo '<td class="text-center">';
-                    echo $this->Form->select(
-                      'estado',
-                      $estados,
-                      ['id'=>$idReserva,'class'=>'custom-select cambiar-estado','value'=>$reserva['id_estado']]
-                    );
-                  echo '</td>';
-                  echo '<td>'.$reserva['tipo_karitng'].'</td>';
-                  $dia = "'".$reposonble_reserva[0]['dia']."'";
-                  echo '<td id="total-reserva-'.$reserva['id_reserva'].'" class="text-center">'.count($reposonble_reserva).'</td>';
-                  echo '<td class="text-center"><button type="button" onclick="borrarReserva('.$reserva['id_reserva'].');" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Borrar reserva"><i class="fas fa-trash-alt"></i></button></td>';
-                echo '</tr>';
-              }
+            foreach ($horario_reserva as $key => $reserva) {
+              echo '<tr class="cabecera" id="cabecera-'.$horario_reserva[0]['id_reserva'].'">';
+                echo '<td>'.$reserva['dia'].'</td>';
+                echo '<td>'.$reserva['horario'].'</td>';
+                echo '<td>'.$reserva['piloto_nombre'].' '.$reserva['piloto_apellido'].'</td>';
+                echo '<td>'.$reserva['telefono'].'</td>';
+                echo '<td class="text-center">';
+                  echo $this->Form->select(
+                    'estado',
+                    $estados,
+                    ['id'=>$horario_reserva[0]['id_reserva'],'class'=>'custom-select cambiar-estado','value'=>$reserva['id_estado']]
+                  );
+                echo '</td>';
+                echo '<td>'.$reserva['tipo_karitng'].'</td>';
+                $dia = "'".$reserva['dia']."'";
+                echo '<td id="total-reserva-'.$horario_reserva[0]['id_reserva'].'" class="text-center">'.$reserva['cantidad'].'</td>';
+                echo '<td class="text-center"><button type="button" onclick="borrarReserva('.$horario_reserva[0]['id_reserva'].');" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Borrar reserva"><i class="fas fa-trash-alt"></i></button></td>';
+              echo '</tr>';
             }
           }
         }
@@ -155,13 +151,6 @@
     
     $("#date-input").change();
     
-    $('#table-detalles').DataTable({
-      "paging":   false,
-      "ordering": false,
-      "info":     false,
-      "searching": false,
-      "ordering": false
-    });
     
     $('#table-reservas').DataTable({
       "paging":   false,

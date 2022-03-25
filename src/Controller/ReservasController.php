@@ -66,13 +66,13 @@ class ReservasController extends AppController {
         'alias' => 'k',
         'type' => 'LEFT',
         'conditions' => 'k.id_kart = Reservas.id_kart'])
-      ->order(['dia' => 'DESC']);
+      ->order(['hr.inicio' => 'ASC']);
 
     $dia_reservas = [];
-      
+    $test = [];  
     foreach ($datos as $dato) {
       if ($dato) {
-        $dia_reservas[$dato['dia']][$dato['id_horario']][$dato['id_piloto']][] = [
+        $dia_reservas[$dato['dia']][$dato['id_horario']][] = [
           'id_reserva' => $dato['id_reserva'],
           'id_piloto' => $dato['id_piloto'],
           'piloto_nombre' => $dato['piloto_nombre'],
@@ -91,7 +91,7 @@ class ReservasController extends AppController {
       }
     }
 
-    $this->set(compact(['dia_reservas','estados']));
+    $this->set(compact(['dia_reservas','estados','datos']));
   }
 
 	public function exportar(){
@@ -161,7 +161,7 @@ class ReservasController extends AppController {
         'alias' => 'k',
         'type' => 'LEFT',
         'conditions' => 'k.id_kart = Reservas.id_kart'])
-      ->order(['dia' => 'DESC'])
+      ->order(['hr.inicio' => 'ASC'])
       ->where(['dia'=> $fecha]);
         
     $datos_reservas = [];
@@ -189,9 +189,9 @@ class ReservasController extends AppController {
 
     $resultado = [];
 
-    foreach ($datos_reservas as $key => $horario_reserva) {
-      foreach ($horario_reserva as $key => $reposonble_reserva) {
-        foreach ($reposonble_reserva as $key => $reserva) {
+    foreach ($datos_reservas as $horario_reserva) {
+      foreach ($horario_reserva as $reposonble_reserva) {
+        foreach ($reposonble_reserva as $reserva) {
           
           $resultado[] = [
             'horario' => $reposonble_reserva[0]['horario'],

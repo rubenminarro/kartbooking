@@ -51,6 +51,9 @@ $routes->scope('/', function (RouteBuilder $builder) {
      * to use (in this case, templates/Pages/home.php)...
      */
     $builder->connect('/', ['controller' => 'Home', 'action' => 'index']);
+
+    /* Administración */
+    $builder->connect('/admin', ['controller' => 'Reservas', 'action' => 'index']);
     
     /* Reservas */
     $builder->connect('/admin/reservas', ['controller' => 'Reservas', 'action' => 'index']);
